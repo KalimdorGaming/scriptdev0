@@ -488,9 +488,21 @@ bool GOUse_go_panther_cage(Player* pPlayer, GameObject* pGo)
     return true;
 };
 
+bool GOUse_go_guru_portal(Player* pPlayer, GameObject* pGo)
+{
+	pPlayer->TeleportTo(0,-13256.7f,172.599f,35,1.11878f,0);
+
+	return true;
+};
+
 void AddSC_go_scripts()
 {
     Script* pNewScript;
+
+	pNewScript = new Script;
+	pNewScript->Name = "go_guru_portal";
+	pNewScript->pGOUse = &GOUse_go_guru_portal;
+	pNewScript->RegisterSelf();
 
     pNewScript = new Script;
     pNewScript->Name = "go_cat_figurine";
