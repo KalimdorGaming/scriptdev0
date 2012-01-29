@@ -495,6 +495,13 @@ bool GOUse_go_guru_portal(Player* pPlayer, GameObject* pGo)
 	return true;
 };
 
+bool GOUse_go_mall_portal(Player* pPlayer, GameObject* pGo)
+{
+	pPlayer->TeleportTo(1,-11326.2f,-4718.63f,7,3.5751f,0);
+
+	return true;
+};
+
 void AddSC_go_scripts()
 {
     Script* pNewScript;
@@ -502,6 +509,11 @@ void AddSC_go_scripts()
 	pNewScript = new Script;
 	pNewScript->Name = "go_guru_portal";
 	pNewScript->pGOUse = &GOUse_go_guru_portal;
+	pNewScript->RegisterSelf();
+
+	pNewScript = new Script;
+	pNewScript->Name = "go_mall_portal";
+	pNewScript->pGOUse = &GOUse_go_mall_portal;
 	pNewScript->RegisterSelf();
 
     pNewScript = new Script;
