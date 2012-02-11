@@ -1065,6 +1065,7 @@ bool GossipHello_telenpc(Player *player, Creature *_Creature)
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Shopping Mall",	 GOSSIP_SENDER_MAIN,3);
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Gurubashi Arena",	 GOSSIP_SENDER_MAIN,4);
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Molten Core",		 GOSSIP_SENDER_MAIN,5);
+	player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
 	return true;
 }
 
