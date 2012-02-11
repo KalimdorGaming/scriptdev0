@@ -1052,11 +1052,69 @@ CreatureAI* GetAI_npc_shahram(Creature* pCreature)
     return new npc_shahramAI(pCreature);
 }
 
+bool GossipHello_telenpc(Player *player, Creature *_Creature)
+{
+	if (player->GetTeam()==HORDE)
+	{
+		player->ADD_GOSSIP_ITEM( 5, "Teleport To: Orgrimmar",	 GOSSIP_SENDER_MAIN,1);
+	} 
+	else
+	{
+		player->ADD_GOSSIP_ITEM( 5, "Teleport To: Stormwind",	 GOSSIP_SENDER_MAIN,2);
+	}
+	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Shopping Mall",	 GOSSIP_SENDER_MAIN,3);
+	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Gurubashi Arena",	 GOSSIP_SENDER_MAIN,4);
+	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Molten Core",		 GOSSIP_SENDER_MAIN,5);
+	return true;
+}
 
+void SendDefaultMenu_telenpc(Player *player, Creature *_Creature, uint32 action)
+{
+	if (action == 1) // Orgrimmar
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(1,1984.13f,-4794.05f,57,4.20237f,0);
+	}
+	else if (action == 2) // Stormwind
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(0,-8399.78f,281.239f,122,5.33334f,0);
+	}
+	else if (action == 3) // Shopping Mall
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(1,-11326.2f,-4718.63f,7,3.5751f,0);
+	}
+	else if (action == 4) // Gurubashi Arena
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(0,-13256.7f,172.599f,35,1.11878f,0);
+	}
+	else if (action == 5) // Molten Core
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(230,1159.34f,-417.006f,-93,3.9212f,0);
+	}
+}
+
+bool GossipSelect_telenpc(Player *player, Creature *_Creature, uint32 sender, uint32 action)
+{
+	// Main menu
+	if (sender == GOSSIP_SENDER_MAIN)
+		SendDefaultMenu_telenpc( player, _Creature, action );
+
+	return true;
+}
 void AddSC_npcs_special()
 {
     Script* pNewScript;
 
+	Script *newscript;
+	newscript                  = new Script;
+	newscript->Name            = "telenpc";
+	newscript->pGossipHello    = &GossipHello_telenpc;
+	newscript->pGossipSelect   = &GossipSelect_telenpc;
+	newscript->RegisterSelf();
 
     pNewScript = new Script;
     pNewScript->Name = "npc_chicken_cluck";
