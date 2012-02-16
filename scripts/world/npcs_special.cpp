@@ -1065,6 +1065,10 @@ bool GossipHello_telenpc(Player *player, Creature *_Creature)
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Shopping Mall",	 GOSSIP_SENDER_MAIN,3);
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Gurubashi Arena",	 GOSSIP_SENDER_MAIN,4);
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Molten Core",		 GOSSIP_SENDER_MAIN,5);
+	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Stratholme",		 GOSSIP_SENDER_MAIN,6);
+	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Blackrock Spire",	 GOSSIP_SENDER_MAIN,7);
+	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Dire Maul",		 GOSSIP_SENDER_MAIN,8);
+	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Onyxia",			 GOSSIP_SENDER_MAIN,9);
 	player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
 	return true;
 }
@@ -1095,6 +1099,26 @@ void SendDefaultMenu_telenpc(Player *player, Creature *_Creature, uint32 action)
 	{
 		player->PlayerTalkClass->CloseGossip();
 		player->TeleportTo(230,1159.34f,-417.006f,-93,3.9212f,0);
+	}
+	else if (action == 6) // Stratholme
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(0,3352.92f,-3379.03f,144.782f,6.25978f,0);
+	}
+	else if (action == 7) // Black Rock Spire
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(0,-7527.05f,-1226.77f,285.732f,5.29626f,0);
+	}
+	else if (action == 8) // Dire Maul
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(1,-3980.8f,789.005f,161.007f,4.71945f,0);
+	}
+	else if (action == 9) // Onyxia
+	{
+		player->PlayerTalkClass->CloseGossip();
+		player->TeleportTo(1,-4708.27f,-3727.64f,54.5589f,3.72786f,0);
 	}
 }
 
