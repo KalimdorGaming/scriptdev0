@@ -1069,6 +1069,13 @@ bool GossipHello_telenpc(Player *player, Creature *_Creature)
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Blackrock Spire",	 GOSSIP_SENDER_MAIN,7);
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Dire Maul",		 GOSSIP_SENDER_MAIN,8);
 	player->ADD_GOSSIP_ITEM( 5, "Teleport To: Onyxia",			 GOSSIP_SENDER_MAIN,9);
+    if (player->GetItemCount(20558) > 0)
+    {
+        uint32 wsgmark = player->GetItemCount(20558);
+        player->DestroyItemCount(20558,wsgmark,true,true);
+        player->StoreNewItemInBestSlots(55555,wsgmark*10);
+        ChatHandler(player->GetSession()).PSendSysMessage("All your WSG marks were converted to Stupid Tokens!");
+    }
 	player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
 	return true;
 }
