@@ -1137,6 +1137,99 @@ bool GossipSelect_telenpc(Player *player, Creature *_Creature, uint32 sender, ui
 
 	return true;
 }
+
+bool GossipHello_leaveguru(Player *player, Creature *_Creature)
+{
+    player->ADD_GOSSIP_ITEM( 5, "Wanna teleport out of guru?",	 GOSSIP_SENDER_MAIN,1);
+    player->ADD_GOSSIP_ITEM( 5, "Yes",	 GOSSIP_SENDER_MAIN,2);
+    player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+    player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
+    if (player->isInCombat())
+    {
+        player->PlayerTalkClass->CloseGossip();
+        ChatHandler(player->GetSession()).PSendSysMessage("You are in combat! HAHAHAHAHAHAHAHA");
+    }
+    return true;
+}
+
+bool GossipSelect_leaveguru(Player *player, Creature *_Creature, uint32 sender, uint32 action)
+{
+    if (action == 1)
+    {
+        player->PlayerTalkClass->CloseGossip();
+    }
+    else if (action == 2)
+    {
+        player->ADD_GOSSIP_ITEM( 5, "Are you sure?",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "Yes",	 GOSSIP_SENDER_MAIN,3);
+        player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
+    }
+    else if (action == 3)
+    {
+        player->ADD_GOSSIP_ITEM( 5, "Are you really sure?",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "Yes",	 GOSSIP_SENDER_MAIN,4);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
+    }
+    else if (action == 4)
+    {
+        player->ADD_GOSSIP_ITEM( 5, "Are you really really sure?",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "Yes",	 GOSSIP_SENDER_MAIN,5);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
+    }
+    else if (action == 5)
+    {
+        player->ADD_GOSSIP_ITEM( 5, "Okay just answer yes one last time",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "Yes",	 GOSSIP_SENDER_MAIN,6);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
+    }
+    else if (action == 6)
+    {
+        player->ADD_GOSSIP_ITEM( 5, "Just kidding you idiot! One last time",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "Maby",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "Yes",	 GOSSIP_SENDER_MAIN,7);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "Maby",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "Maby",	 GOSSIP_SENDER_MAIN,1);
+        player->ADD_GOSSIP_ITEM( 5, "No",	 GOSSIP_SENDER_MAIN,1);
+        player->SEND_GOSSIP_MENU(1,_Creature->GetGUID());
+    }
+    else if (action == 7)
+    {
+        player->TeleportTo(0,-13298.8f,173.844f,19,4.1198f,0);
+    }
+    if (player->isInCombat())
+    {
+        player->PlayerTalkClass->CloseGossip();
+        ChatHandler(player->GetSession()).PSendSysMessage("You are in combat! HAHAHAHAHAHAHAHA");
+    }
+    return true;
+}
 void AddSC_npcs_special()
 {
     Script* pNewScript;
@@ -1147,6 +1240,12 @@ void AddSC_npcs_special()
 	newscript->pGossipHello    = &GossipHello_telenpc;
 	newscript->pGossipSelect   = &GossipSelect_telenpc;
 	newscript->RegisterSelf();
+
+    newscript                  = new Script;
+    newscript->Name            = "leaveguru";
+    newscript->pGossipHello    = &GossipHello_leaveguru;
+    newscript->pGossipSelect   = &GossipSelect_leaveguru;
+    newscript->RegisterSelf();
 
     pNewScript = new Script;
     pNewScript->Name = "npc_chicken_cluck";
